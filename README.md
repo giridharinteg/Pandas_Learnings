@@ -227,3 +227,16 @@ a     int64
 b    object
 dtype: object
 Column 'b' has been left alone since its values were strings, not integers. If you wanted to try and force the conversion of both columns to an integer type, you could use df.astype(int) instead.
+
+# So I want the \n to actually be a new line, and not just to show me the "\n" string.
+
+9
+
+If you're running this in the Python interpreter, it is the regular behavior of the interpreter to show newlines as "\n" instead of actual newlines, because it makes it easier to debug the output. If you want to get actual newlines within the interpreter, you should print the string you get.
+
+If this is what the program is outputting (i.e.: You're getting newline escape sequences from the external program), you should use the following:
+
+OUTPUT = stdout.read()
+formatted_output = OUTPUT.replace('\\n', '\n')
+print formatted_output
+This will replace escaped newlines by actual newlines in the output string.
